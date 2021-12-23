@@ -1,29 +1,16 @@
+/*
+ * @Author: Y
+ * @Date: 2021-09-06 16:40:46
+ * @LastEditTime: 2021-12-23 22:43:34
+ * @LastEditors: Y
+ * @Description:
+ */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-
+import RouterConfig from './modules' // 引入业务逻辑模块
+import CommonRouters from './common' // 引入通用模块
 Vue.use(VueRouter)
-
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
-
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+export default new VueRouter({
+  mode: 'history', // 需要服务端支持
+  routes: RouterConfig.concat(CommonRouters)
 })
-
-export default router
